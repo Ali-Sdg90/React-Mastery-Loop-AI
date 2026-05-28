@@ -1,0 +1,5 @@
+- Keep the input field controlled with `useState`.
+- Use `Array.prototype.filter` to implement the task filter.
+- Use the task `id` as a stable key when rendering list items.
+- Build the app with a small component tree: form, task list, task item, filter bar.
+- Show separate counts for active and completed tasks.

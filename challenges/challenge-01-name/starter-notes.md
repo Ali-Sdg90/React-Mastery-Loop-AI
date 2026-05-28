@@ -1,0 +1,5 @@
+- Use `useState` for task list state and the input value.
+- Keep the task data shape small: `{ id, label, completed }`.
+- Use a controlled form so React owns the input value.
+- Render task rows with conditional styling for completed state.
+- Keep the UI focused: task creation, completion, and filtering only.

@@ -139,12 +139,10 @@ This system is designed specifically for **Ali**.
 
 However, if someone else wants to use it, they can:
 
-- Use `first-prompt.txt` → for challenge generation
-- Use `second-prompt.txt` → for evaluation and feedback
+- Use `1-challenge-generator-prompt.md` → for challenge generation
+- Use `2-challenge-evaluator-prompt.md` → for evaluation and feedback
 
 These two prompts power the entire system loop.
-
-
 
 Good luck Ali!
 

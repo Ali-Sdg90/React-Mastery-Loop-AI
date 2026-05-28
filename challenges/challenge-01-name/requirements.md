@@ -1,0 +1,7 @@
+- Build a task list UI using React functional components.
+- Add a controlled input for creating new tasks.
+- Implement a task completion toggle.
+- Display active and completed task counts.
+- Add a simple filter for all / active / completed tasks.
+- Keep all state inside the React app.
+- Avoid external libraries for logic and state management.
