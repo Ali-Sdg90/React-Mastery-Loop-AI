@@ -1,44 +1,103 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import TodoItem from "./TodoItem";
+import "./style.scss";
 
 const TodoApp = () => {
-    const [inputValue, setInputValue] = useState("");
-    const [todoList, setTodoList] = useState([]);
+    const [savedTodos, setSavedTodos] = useState([]);
+    const [currentTodo, setCurrentTodo] = useState("");
+    const [showTodoMode, setShowTodoMode] = useState("all");
 
-    const handleSubmit = (e) => {
+    const submitHandle = (e) => {
         e.preventDefault();
-        console.log(inputValue);
 
-        setTodoList((prevState) => [...prevState, inputValue]);
+        setSavedTodos((prevState) => [
+            ...prevState,
+            { title: currentTodo, isComplete: false },
+        ]);
 
-        setInputValue("");
+        setCurrentTodo("");
     };
 
+    useEffect(() => {
+        console.log(">>", savedTodos);
+    }, [savedTodos]);
+
     return (
-        <div>
-            <h1>Todo App</h1>
+        <>
+            <h1>1. Todo App</h1>
 
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Input:{" "}
-                    <input
-                        type="text"
-                        value={inputValue}
-                        onChange={(e) => setInputValue(e.target.value)}
-                        placeholder="enter your todo"
-                    />
-                </label>
+            <div className="todo-section">
+                <form onSubmit={submitHandle} className="input-todo">
+                    <label>
+                        Input:{" "}
+                        <input
+                            type="text"
+                            placeholder="enter your todo"
+                            value={currentTodo}
+                            onChange={(e) => setCurrentTodo(e.target.value)}
+                        />
+                    </label>
 
-                <button type="submit">Add</button>
-            </form>
+                    <button type="submit" disabled={!currentTodo}>
+                        Add
+                    </button>
+                </form>
 
-            {todoList.length > 0 ? (
-                todoList.map((todoText, index) => (
-                    <div key={index}>{todoText}</div>
-                ))
-            ) : (
-                <div>No Todo yet! </div>
-            )}
-        </div>
+                <div className="show-todos">
+                    {savedTodos.length > 0 ? (
+                        [...savedTodos]
+                            .reverse()
+                            .map((todo, index) =>
+                                showTodoMode === "all"
+                                    ? TodoItem(todo, index, setSavedTodos)
+                                    : showTodoMode === "active"
+                                      ? !todo.isComplete &&
+                                        TodoItem(todo, index, setSavedTodos)
+                                      : todo.isComplete &&
+                                        TodoItem(todo, index, setSavedTodos),
+                            )
+                    ) : (
+                        <div>No Todo yet!</div>
+                    )}
+                </div>
+
+                <div className="todo-filter-btn">
+                    <div
+                        onClick={() => setShowTodoMode("all")}
+                        style={{
+                            textDecoration:
+                                showTodoMode === "all"
+                                    ? "none"
+                                    : "line-through",
+                        }}
+                    >
+                        All
+                    </div>
+                    <div
+                        onClick={() => setShowTodoMode("active")}
+                        style={{
+                            textDecoration:
+                                showTodoMode === "active"
+                                    ? "none"
+                                    : "line-through",
+                        }}
+                    >
+                        Active
+                    </div>
+                    <div
+                        onClick={() => setShowTodoMode("completed")}
+                        style={{
+                            textDecoration:
+                                showTodoMode === "completed"
+                                    ? "none"
+                                    : "line-through",
+                        }}
+                    >
+                        Completed
+                    </div>
+                </div>
+            </div>
+        </>
     );
 };
 
