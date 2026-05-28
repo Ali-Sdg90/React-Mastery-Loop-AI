@@ -1,7 +1,7 @@
-import challengeReadme from "../../challenges/challenge-01-name/README.md?raw";
-import challengeRequirements from "../../challenges/challenge-01-name/requirements.md?raw";
-import challengeHints from "../../challenges/challenge-01-name/hints.md?raw";
-import challengeStarterNotes from "../../challenges/challenge-01-name/starter-notes.md?raw";
+import challengeReadme from "../../challenges/01. React Task Flow/README.md?raw";
+import challengeRequirements from "../../challenges/01. React Task Flow/requirements.md?raw";
+import challengeHints from "../../challenges/01. React Task Flow/hints.md?raw";
+import challengeStarterNotes from "../../challenges/01. React Task Flow/starter-notes.md?raw";
 
 const challenges = [
     {
