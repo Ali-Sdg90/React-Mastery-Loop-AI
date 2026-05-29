@@ -1,7 +1,18 @@
 {
     "name": "react-mastery-loop-ai",
     "private": true,
-    "version": "0.0.0",
+    "version": "1.0.0",
+    "description": "A React learning project with adaptive AI-driven challenge generation and evaluation.",
+    "author": "Ali Sadeghi",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Ali-Sdg90/React-Mastery-Loop-AI.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Ali-Sdg90/React-Mastery-Loop-AI/issues"
+    },
+    "homepage": "https://github.com/Ali-Sdg90/React-Mastery-Loop-AI#readme",
+    "license": "MIT",
     "type": "module",
     "scripts": {
         "dev": "vite",
