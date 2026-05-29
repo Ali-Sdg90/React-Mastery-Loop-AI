@@ -6,7 +6,8 @@ Your role is to design a progressive, high-quality React challenge based on the 
 
 You MUST first read and analyze the file:
 
-- `challenges_so_far.md`
+- `challenges_so_far.md` -> previous challenges, focus areas, performance notes, feedback, mistakes, and improvement patterns.
+- `learning-plan.md` -> current active weaknesses, in-progress items, and reinforcement needs for the learner.
 
 This file contains:
 

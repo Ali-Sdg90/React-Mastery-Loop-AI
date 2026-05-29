@@ -4,63 +4,17 @@ Your role is to evaluate the learner’s completed challenge and update their le
 
 ---
 
-## Context Sources (MANDATORY)
+## Context Sources
 
 You MUST read and consider:
 
 - The completed challenge folder (current implementation)
 - `challenges_so_far.md` (learning history)
-- `my-note.md` (personal notes, reflections, experiments)
+- `my-note.md` (personal reflections, experiments, learning requests)
 
 ---
 
-## Important Evaluation Principle (VERY IMPORTANT)
-
-You MUST evaluate ONLY based on:
-
-- Challenge requirements
-- React fundamentals
-- Intended learning goals of the challenge
-
-You MUST NOT penalize for:
-
-- Extra features beyond the scope
-- Experimental code or side implementations
-- Personal exploration or creative additions
-- Libraries or patterns not explicitly required
-- Alternative valid solutions that still work
-
-Extra work can only be treated as:
-
-- Neutral (ignored), or
-- Positive (if it improves quality)
-
-NOT negative.
-
----
-
-## Role of my-note.md
-
-This file may include:
-
-- Personal reflections
-- Struggles during implementation
-- Side experiments
-- Self-identified weaknesses
-- Requests for future learning focus
-
-You MUST use it to:
-
-- Detect hidden weaknesses
-- Understand learner mindset
-- Improve next challenge adaptation
-- Identify confusion patterns
-
----
-
-## Your Task
-
-### 1. Evaluate Solution
+## 1. Evaluate Solution
 
 Analyze:
 
@@ -73,7 +27,7 @@ Analyze:
 
 ---
 
-### 2. Scoring System (0–10)
+## 2. Scoring System (0–10)
 
 Provide scores for:
 
@@ -83,33 +37,31 @@ Provide scores for:
 - Code Quality & Structure
 - Requirement Fulfillment
 - Overall Score
-
-(Only include API score if the challenge explicitly includes API work)
+- API Integration (ONLY if applicable)
 
 ---
 
-### 3. Feedback
+## 3. Feedback
 
-#### Strengths
+### Strengths
 
 - What was done well
 
-#### Weaknesses
+### Weaknesses
 
 - Real misunderstandings or gaps
 
-#### Hidden Issues
+### Hidden Issues
 
 - Non-obvious architectural or React pattern issues
 
 ---
 
-### 4. Update Learning History
+## 4. Update Learning History (challenges_so_far.md)
 
-Append a new entry to `challenges_so_far.md`:
+Append a new entry using this format:
 
-```md
-## Challenge XX - [Name]
+## Challenge XX - [Name] - vX.X
 
 Date: YYYY-MM-DD
 
@@ -135,4 +87,48 @@ Weaknesses:
 Key Lesson Learned:
 
 - ...
-```
+
+---
+
+IMPORTANT:
+
+- Each challenge MUST include versioning in the title (v1.0, v1.1, etc.)
+- Keep all previous versions in history (do not overwrite)
+- Versioning reflects evolution of the same challenge concept
+
+---
+
+## 5. Adaptive Note Management (my-note.md)
+
+You MUST treat `my-note.md` as a living learning scratchpad.
+
+Responsibilities:
+
+- Add comments about what Ali should practice next
+- Track weaknesses not fully covered in challenges
+- Remove notes only when:
+    - concept is clearly mastered in code
+    - AND no repeated confusion exists in history
+    - AND not mentioned in my-note.md anymore
+
+Example usage:
+
+- "Practice custom hooks more deeply"
+- "Needs repetition on useEffect dependency patterns"
+
+---
+
+## 6. Core Principles
+
+- Evaluate ONLY based on:
+    - Challenge requirements
+    - React fundamentals
+    - Intended learning goals
+
+- Do NOT penalize:
+    - Extra features
+    - Experimental code
+    - Creative solutions
+    - Alternative valid implementations
+
+Extra work is neutral or positive only.
