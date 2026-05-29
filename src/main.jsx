@@ -1,14 +1,15 @@
-import { StrictMode } from "react";
+// import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import TodoApp from "../challenges/01. React Task Flow/app-v2/TodoApp";
+// import TodoApp from "../challenges/01. React Task Flow/app-v2/TodoApp";
+import TodoApp from "../challenges/challenge-02-fetch-todo/app-v1/TodoApp";
 // import App from "./App.jsx";
 // import TodoApp from "../challenges/challenge-01-name/app/TodoApp.jsx";
 
 createRoot(document.getElementById("root")).render(
-    <StrictMode>
-        {/* <App /> */}
-        {/* <TodoApp /> */}
+    // <StrictMode>
+        // {/* <App /> */}
+        // {/* <TodoApp /> */}
         <TodoApp />
-    </StrictMode>,
+    // </StrictMode>,
 );

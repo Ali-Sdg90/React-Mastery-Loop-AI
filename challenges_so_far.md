@@ -75,3 +75,37 @@ Hidden Issues:
 Key Lesson Learned:
 
 - Professional component structure requires separation of concerns: parent owns state logic, child components are presentational. The refactoring demonstrated strong understanding of prop drilling, immutability, and component composition.
+
+---
+
+## Challenge 02 - Fetch Todo
+
+Date: 2026-05-29
+
+Focus: Fetching todos, loading/error handling, controlled input, and local persistence
+
+Score:
+
+- Overall: 8/10
+- React Fundamentals: 8/10
+- State Management: 7/10
+- Component Design: 7/10
+- Code Quality: 7/10
+- Requirements: 8/10
+
+Strengths:
+
+- Implemented custom hooks for `fetch` and `localStorage`, showing good abstraction of side-effect logic.
+- Added loading and error UI with retry capability for API failures.
+- Rendered fetched todos alongside user-created todos and supported filtering by all/active/completed.
+- Persisted new todos to localStorage and preserved user-created edits across reloads.
+
+Weaknesses:
+
+- Toggling completion on fetched todos is not persisted to `localStorage`, so API items may lose state after reload or refresh.
+- New todo creation uses `Date.now()` twice, which can produce mismatched IDs between the transient and persisted todo objects.
+- `savedTodos` is derived from both API data and local storage state, which duplicates state and can lead to synchronization edge cases.
+
+Key Lesson Learned:
+
+- When combining fetched and local data, maintain a single source of truth and persist changes consistently across both external and local items.
