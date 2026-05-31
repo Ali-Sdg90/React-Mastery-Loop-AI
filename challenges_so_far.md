@@ -109,3 +109,79 @@ Weaknesses:
 Key Lesson Learned:
 
 - When combining fetched and local data, maintain a single source of truth and persist changes consistently across both external and local items.
+
+---
+
+## Challenge 03 - Recipe Box - v1.0
+
+Date: 2026-05-31
+
+Focus: API CRUD with React Query, custom hooks, and UI state handling
+
+Score:
+
+- Overall: 7/10
+- React Fundamentals: 8/10
+- State Management: 7/10
+- Component Design: 7/10
+- Code Quality: 7/10
+- Requirements: 7/10
+
+Strengths:
+
+- Used idiomatic functional components and custom hooks to separate UI from API logic.
+- Implemented React Query for fetch and mutation flows with automatic cache invalidation.
+- Added loading/error UI for initial fetch and mutation actions.
+- Kept presentational components focused, and the `useRecipes` hook encapsulated API operations.
+
+Weaknesses:
+
+- Edit flow is not user-driven: the UI updates recipe titles with a static "Updated Title" instead of an editable form.
+- Retry/retry-on-failure actions are not implemented for failed API requests.
+- Some manual local state for mutation loading/error tracking duplicates React Query capabilities and adds complexity.
+
+Key Lesson Learned:
+
+- Practice building full CRUD UX with real edit forms and explicit retry/error handling on React Query mutations and queries.
+
+---
+
+## Challenge 03 - Recipe Box - v1.1
+
+Date: 2026-05-31
+
+Focus: API CRUD with React Query, custom hooks, mutation UX and error handling
+
+Score:
+
+- Overall: 8/10
+- React Fundamentals: 8/10
+- State Management: 7/10
+- Component Design: 7/10
+- Code Quality: 7/10
+- Requirements: 7/10
+- API Integration: 8/10
+
+Strengths:
+
+- Clear separation of concerns: `useRecipes` encapsulates data logic and React Query usage.
+- Uses `useQuery` and `useMutation` idiomatically with cache invalidation on success.
+- Presentational components (`AddRecipeForm`, `Recipes`) focus on UI and props.
+- Reasonable loading and error states for initial fetch and mutation flows.
+
+Weaknesses:
+
+- Edit flow is not implemented as a user-driven form — the edit button applies a static title instead of collecting user input.
+- Some local state duplicates React Query's mutation state (manual `loadingIDs` / `errorIDs`) leading to extra complexity.
+- Minor bugs/portability issues: inconsistent import casing for `Recipes` and use of `createRecipeMutation.isPending` (React Query exposes `isLoading` / `isError`, not `isPending`).
+- No retry UI or optimistic update patterns; error recovery UX is missing.
+
+Hidden Issues:
+
+- Import path casing (`import Recipes from "../components/recipes"`) will work on Windows but breaks on case-sensitive systems; prefer exact filename casing.
+- Prop/handler naming typos (e.g., `handelSubmit`) are small but reduce clarity and indicate attention areas.
+- `loadingIDs` and `errorIDs` duplicate mutation status tracking that React Query already provides (use `mutation.isLoading` / `mutation.isError` and mutation context instead).
+
+Key Lesson Learned:
+
+- Reinforce React Query mutation patterns (use `isLoading`/`isError`, optimistic updates, and `onError` retry UI) and implement full edit forms to complete CRUD UX.
