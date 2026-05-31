@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const AddRecipeForm = ({ onAddRecipe, isLoading, error }) => {
+const AddRecipeForm = ({ onAddRecipe, isPending, error }) => {
     const [recipeName, setRecipeName] = useState("");
 
     const handelSubmit = (e) => {
@@ -21,8 +21,8 @@ const AddRecipeForm = ({ onAddRecipe, isLoading, error }) => {
                 placeholder="Enter recipe name"
             />
 
-            <button type="submit" disabled={isLoading}>
-                {isLoading ? "Adding..." : "Add Recipe"}
+            <button type="submit" disabled={isPending}>
+                {isPending ? "Adding..." : "Add Recipe"}
             </button>
 
             {error && (

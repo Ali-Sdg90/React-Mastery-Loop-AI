@@ -51,8 +51,29 @@ export const deleteRecipe = async (id) => {
         throw new Error("Error deleting data");
     }
 
+    console.log("DELETE Response >> ", response.status, " >> ", true);
+    return true;
+};
+
+export const updateRecipe = async ({ id, title }) => {
+    const url = `${BASE_URL}/${id}`;
+    console.log("PATCH Request >> ", url, { title });
+
+    const response = await fetch(url, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title }),
+    });
+
+    if (!response.ok) {
+        console.error("Error PATCH >> ", response.status, " >> ", response);
+        throw new Error("Error updating data");
+    }
+
     const data = await response.json();
-    console.log("DELETE Response >> ", response.status, " >> ", data);
+    console.log("PATCH Response >> ", response.status, " >> ", data);
 
     return data;
 };
