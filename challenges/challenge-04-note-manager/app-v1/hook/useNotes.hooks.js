@@ -19,7 +19,7 @@ export const useDeleteNote = () => {
     return useInvalidateMutation((id) => delReq(`/posts/${id}`), NOTES_KEY);
 };
 
-export const useUpdateNote = () => {
+export const useEditNote = () => {
     return useInvalidateMutation(
         ({ id, data }) => patchReq(`/posts/${id}`, data),
         NOTES_KEY,

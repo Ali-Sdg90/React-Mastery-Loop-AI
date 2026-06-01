@@ -1,10 +1,18 @@
 import { useNotes } from "../hook/useNotes.hooks";
+import EditNote from "./editNote";
 
 const ShowNotes = ({
     deleteHandler,
     deleteIsPending,
     deleteError,
     deletingId,
+    editingId,
+    editNote,
+    setEditNote,
+    editingIsPending,
+    editingError,
+    editingHandler,
+    setEditingId,
 }) => {
     const { data: notes, isLoading, error } = useNotes();
 
@@ -33,6 +41,29 @@ const ShowNotes = ({
                                 </button>
                                 {deleteError && (
                                     <p>Error: {deleteError.message}</p>
+                                )}
+                                <button
+                                    onClick={() => {
+                                        setEditingId((prevState) =>
+                                            prevState === note.id
+                                                ? null
+                                                : note.id,
+                                        );
+                                    }}
+                                >
+                                    {editingId === note.id
+                                        ? "Close Edit"
+                                        : "Edit"}
+                                </button>
+                                {editingId === note.id && (
+                                    <EditNote
+                                        editHandler={editingHandler}
+                                        editNote={editNote}
+                                        setEditNote={setEditNote}
+                                        note={note}
+                                        editingIsPending={editingIsPending}
+                                        editingError={editingError}
+                                    />
                                 )}
                             </li>
                         ),

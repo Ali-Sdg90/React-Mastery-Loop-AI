@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CreateNewNote from "../components/NewNoteForm";
 import ShowNotes from "../components/ShowNotes";
-import { useCreateNote, useDeleteNote } from "../hook/useNotes.hooks";
+import {
+    useCreateNote,
+    useDeleteNote,
+    useEditNote,
+} from "../hook/useNotes.hooks";
 
 const NoteManager = () => {
     const [newNote, setNewNote] = useState("");
+    const [editNote, setEditNote] = useState("");
     const [deletingId, setDeletingId] = useState(null);
+    const [editingId, setEditingId] = useState(null);
 
     const createNoteMutation = useCreateNote();
     const deleteNoteMutation = useDeleteNote();
+    const editNoteMutation = useEditNote();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -30,6 +37,23 @@ const NoteManager = () => {
         }
     };
 
+    const editingHandler = async (e, id) => {
+        e.preventDefault();
+
+        try {
+            await editNoteMutation.mutateAsync({
+                id,
+                data: { title: editNote },
+            });
+        } finally {
+            setEditingId(null);
+        }
+    };
+
+    useEffect(() => {
+        console.log("Editing Note Content:", editNote);
+    }, [editNote]);
+
     return (
         <div>
             <h1>Note Manager</h1>
@@ -47,6 +71,13 @@ const NoteManager = () => {
                 deleteIsPending={deleteNoteMutation.isPending}
                 deleteError={deleteNoteMutation.error}
                 deletingId={deletingId}
+                editingId={editingId}
+                editingHandler={editingHandler}
+                editingIsPending={editNoteMutation.isPending}
+                editingError={editNoteMutation.error}
+                editNote={editNote}
+                setEditNote={setEditNote}
+                setEditingId={setEditingId}
             />
         </div>
     );
