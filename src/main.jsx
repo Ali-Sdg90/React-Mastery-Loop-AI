@@ -3,7 +3,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import TodoApp from "../challenges/01. React Task Flow/app-v2/TodoApp";
-import App from "../challenges/challenge-03-recipe-box/app-v1/App";
+import App from "../challenges/challenge-04-note-manager/app-v1/App.jsx";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
