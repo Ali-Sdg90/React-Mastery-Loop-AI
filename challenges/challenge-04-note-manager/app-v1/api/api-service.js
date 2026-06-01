@@ -13,8 +13,6 @@ const request = async (
         signal,
     };
 
-    console.log(endpoint);
-
     if (data) {
         config.body = JSON.stringify(data);
     }

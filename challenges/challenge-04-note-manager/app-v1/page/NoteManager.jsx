@@ -1,35 +1,53 @@
-import { useEffect } from "react";
-import { getReq } from "../api/api-service";
+import { useState } from "react";
 import CreateNewNote from "../components/NewNoteForm";
 import ShowNotes from "../components/ShowNotes";
-import useApiService from "../hook/useApiService";
+import { useCreateNote, useDeleteNote } from "../hook/useNotes.hooks";
 
 const NoteManager = () => {
-    const { noteQuery, createNewNote, deleteNote, patchNote } = useApiService();
+    const [newNote, setNewNote] = useState("");
+    const [deletingId, setDeletingId] = useState(null);
+
+    const createNoteMutation = useCreateNote();
+    const deleteNoteMutation = useDeleteNote();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const content = e.target.elements[0].value.trim();
 
-        if (!content) return;
+        if (!newNote) return;
 
-        console.log("New Note Content:", content);
+        console.log("New Note Content:", newNote);
 
-        // createNewNote.mutate({
-        //     endpoint: "/create",
-        //     data: { title: content },
-        // });
+        createNoteMutation.mutate({ title: newNote });
+        setNewNote("");
+    };
 
-        e.target.elements[0].value = "";
+    const deleteHandler = async (id) => {
+        try {
+            setDeletingId(id);
+            await deleteNoteMutation.mutateAsync(id);
+        } finally {
+            setDeletingId(null);
+        }
     };
 
     return (
         <div>
             <h1>Note Manager</h1>
 
-            <CreateNewNote handleSubmit={handleSubmit} />
+            <CreateNewNote
+                handleSubmit={handleSubmit}
+                newNote={newNote}
+                setNewNote={setNewNote}
+                isPending={createNoteMutation.isPending}
+                error={createNoteMutation.error}
+            />
 
-            <ShowNotes />
+            <ShowNotes
+                deleteHandler={deleteHandler}
+                deleteIsPending={deleteNoteMutation.isPending}
+                deleteError={deleteNoteMutation.error}
+                deletingId={deletingId}
+            />
         </div>
     );
 };

@@ -1,8 +1,10 @@
-import { useState } from "react";
-
-const NewNoteForm = ({ handleSubmit }) => {
-    const [newNote, setNewNote] = useState("");
-
+const NewNoteForm = ({
+    handleSubmit,
+    newNote,
+    setNewNote,
+    isPending,
+    error,
+}) => {
     return (
         <div>
             <h2>Add Note</h2>
@@ -14,7 +16,11 @@ const NewNoteForm = ({ handleSubmit }) => {
                     onChange={(e) => setNewNote(e.target.value)}
                 />
 
-                <button type="submit">Add</button>
+                <button type="submit" disabled={isPending}>
+                    {isPending ? "Adding..." : "Add Note"}
+                </button>
+
+                {error && <p>Error: {error.message}</p>}
             </form>
         </div>
     );
