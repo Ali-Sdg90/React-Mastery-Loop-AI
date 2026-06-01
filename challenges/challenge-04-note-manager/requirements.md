@@ -1,7 +1,7 @@
 # Requirements
 
 1. Fetch notes from an API using React Query `useQuery`.
-2. Display a list of notes with title and body.
+2. Display a list of notes with title.
 3. Show loading and error states for the initial query.
 4. Add a new note through a controlled form.
 5. Edit an existing note using a user-driven form and save changes via React Query `useMutation`.

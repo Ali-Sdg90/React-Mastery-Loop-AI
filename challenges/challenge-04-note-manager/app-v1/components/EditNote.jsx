@@ -4,7 +4,6 @@ const EditNote = ({
     editNote,
     setEditNote,
     editingIsPending,
-    editingError,
 }) => {
     return (
         <form onSubmit={(e) => editHandler(e, note.id)}>
@@ -18,8 +17,6 @@ const EditNote = ({
             <button type="submit" disabled={editingIsPending}>
                 {editingIsPending ? "Saving..." : "Save"}
             </button>
-
-            {editingError && <p>Error: {editingError.message}</p>}
         </form>
     );
 };

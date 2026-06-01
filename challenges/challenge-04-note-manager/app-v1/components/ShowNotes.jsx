@@ -13,6 +13,7 @@ const ShowNotes = ({
     editingError,
     editingHandler,
     setEditingId,
+    numberOfNotes
 }) => {
     const { data: notes, isLoading, error } = useNotes();
 
@@ -25,7 +26,7 @@ const ShowNotes = ({
             <ol>
                 {notes?.map(
                     (note, index) =>
-                        index < 20 && (
+                        index < numberOfNotes && (
                             <li key={note.id}>
                                 {note.title} -{" "}
                                 <button
@@ -39,9 +40,13 @@ const ShowNotes = ({
                                         ? "Deleting..."
                                         : "Delete"}
                                 </button>
-                                {deleteError && (
-                                    <p>Error: {deleteError.message}</p>
-                                )}
+                                {deleteError ||
+                                    (editingError && (
+                                        <p>
+                                            Error: {deleteError.message}
+                                            {editingError.message}
+                                        </p>
+                                    ))}
                                 <button
                                     onClick={() => {
                                         setEditingId((prevState) =>
@@ -49,6 +54,7 @@ const ShowNotes = ({
                                                 ? null
                                                 : note.id,
                                         );
+                                        setEditNote(note.title);
                                     }}
                                 >
                                     {editingId === note.id
@@ -62,7 +68,6 @@ const ShowNotes = ({
                                         setEditNote={setEditNote}
                                         note={note}
                                         editingIsPending={editingIsPending}
-                                        editingError={editingError}
                                     />
                                 )}
                             </li>

@@ -185,3 +185,38 @@ Hidden Issues:
 Key Lesson Learned:
 
 - Reinforce React Query mutation patterns (use `isLoading`/`isError`, optimistic updates, and `onError` retry UI) and implement full edit forms to complete CRUD UX.
+
+---
+
+## Challenge 04 - Note Manager - v1.0
+
+Date: 2026-06-01
+
+Focus: React Query CRUD with controlled forms and cache invalidation
+
+Score:
+
+- Overall: 8/10
+- React Fundamentals: 8/10
+- State Management: 9/10
+- Component Design: 8/10
+- Code Quality: 7/10
+- Requirements: 8/10
+- API Integration: 8/10
+
+Strengths:
+
+- Used `useQuery` and `useMutation` to keep the note list in sync with API data.
+- Kept data logic inside custom hooks and presentation in separate components.
+- Implemented add, edit, and delete note flows with query invalidation.
+- Avoided duplicate local list state by relying on React Query cache.
+
+Weaknesses:
+
+- Error rendering in `ShowNotes` is flawed and can crash when one mutation error is undefined.
+- Mutation errors are not displayed separately per action, which reduces clarity.
+- Edit form state is shared globally rather than scoped to each note item.
+
+Key Lesson Learned:
+
+- Keep mutation error handling explicit and safe in UI components, and avoid chained error rendering expressions that can return raw objects or access undefined properties.

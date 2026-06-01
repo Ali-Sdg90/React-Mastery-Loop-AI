@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CreateNewNote from "../components/NewNoteForm";
 import ShowNotes from "../components/ShowNotes";
 import {
@@ -12,6 +12,7 @@ const NoteManager = () => {
     const [editNote, setEditNote] = useState("");
     const [deletingId, setDeletingId] = useState(null);
     const [editingId, setEditingId] = useState(null);
+    const [numberOfNotes, setNumberOfNotes] = useState(20);
 
     const createNoteMutation = useCreateNote();
     const deleteNoteMutation = useDeleteNote();
@@ -21,8 +22,6 @@ const NoteManager = () => {
         e.preventDefault();
 
         if (!newNote) return;
-
-        console.log("New Note Content:", newNote);
 
         createNoteMutation.mutate({ title: newNote });
         setNewNote("");
@@ -40,6 +39,8 @@ const NoteManager = () => {
     const editingHandler = async (e, id) => {
         e.preventDefault();
 
+        if (!editNote) return;
+
         try {
             await editNoteMutation.mutateAsync({
                 id,
@@ -49,10 +50,6 @@ const NoteManager = () => {
             setEditingId(null);
         }
     };
-
-    useEffect(() => {
-        console.log("Editing Note Content:", editNote);
-    }, [editNote]);
 
     return (
         <div>
@@ -64,6 +61,8 @@ const NoteManager = () => {
                 setNewNote={setNewNote}
                 isPending={createNoteMutation.isPending}
                 error={createNoteMutation.error}
+                numberOfNotes={numberOfNotes}
+                setNumberOfNotes={setNumberOfNotes}
             />
 
             <ShowNotes
@@ -78,6 +77,7 @@ const NoteManager = () => {
                 editNote={editNote}
                 setEditNote={setEditNote}
                 setEditingId={setEditingId}
+                numberOfNotes={numberOfNotes}
             />
         </div>
     );

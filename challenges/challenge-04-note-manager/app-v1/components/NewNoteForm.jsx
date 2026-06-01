@@ -4,6 +4,8 @@ const NewNoteForm = ({
     setNewNote,
     isPending,
     error,
+    numberOfNotes,
+    setNumberOfNotes,
 }) => {
     return (
         <div>
@@ -19,6 +21,19 @@ const NewNoteForm = ({
                 <button type="submit" disabled={isPending}>
                     {isPending ? "Adding..." : "Add Note"}
                 </button>
+
+                <p>
+                    Number of results:{" "}
+                    <input
+                        type="number"
+                        min={10}
+                        max={100}
+                        value={numberOfNotes}
+                        onChange={(e) =>
+                            setNumberOfNotes(parseInt(e.target.value) || 10)
+                        }
+                    />
+                </p>
 
                 {error && <p>Error: {error.message}</p>}
             </form>
