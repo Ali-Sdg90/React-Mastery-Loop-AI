@@ -220,3 +220,50 @@ Weaknesses:
 Key Lesson Learned:
 
 - Keep mutation error handling explicit and safe in UI components, and avoid chained error rendering expressions that can return raw objects or access undefined properties.
+
+---
+
+## Challenge 05 - Notes Comments
+
+Date: 2026-06-05
+
+Focus: Multi-query React Query patterns, advanced routing, and scalable project structure
+
+Score:
+
+- Overall: 9/10
+- React Fundamentals: 9/10
+- State Management: 9/10
+- Component Design: 8/10
+- Code Quality: 8/10
+- Requirements: 10/10
+- API Integration: 9/10
+
+Strengths:
+
+- **Excellent evolution in project structure** — Moved from flat component layout to organized pages with grouped components. This is a professional-grade organization that scales well.
+- **Mastered multi-query patterns** — Properly implemented distinct query keys (`['notes']` and `['comments', noteId]`) with selective invalidation. Each mutation invalidates only its relevant cache.
+- **Clean hook abstraction** — `useInvalidateMutation` encapsulates the mutation + cache invalidation pattern elegantly, reducing boilerplate across all CRUD hooks.
+- **React Router integration** — Correctly uses URL params (`/about/:id`) for note selection, making state URL-driven and shareable.
+- **Complete CRUD coverage** — Implemented create, read, edit, delete for notes plus create and read for comments. Bonus delete feature working properly.
+- **Consistent state management** — All data flows through React Query, eliminating duplicate local state that plagued Challenge 04.
+- **FormData API usage** — Shows modern form handling technique in `NoteEditor` and `AddCommentForm`.
+- **Loading and error states** — Present and consistent across all components for both queries and mutations.
+
+Weaknesses:
+
+- **Error rendering inconsistency** — `createNoteMutation.error` in `AddTodo` renders Error object directly (may not display); other places use `.message` pattern. Should standardize error handling across all components.
+- **Uncontrolled inputs in NoteEditor** — Uses `defaultValue` instead of controlled `value + onChange` pattern. Works but inconsistent with Challenge 04's best practice approach.
+- **Alert validation in AddCommentForm** — Validation uses `alert()` instead of in-form error feedback for better UX.
+- **TodoList delete mutation error display** — Error state is global (not per-item), so deleting item B will show/clear errors for all delete operations, confusing the user about which item failed.
+- **Confusing page naming** — `HomePage` is actually a notes list, `AboutPage` is actually a note detail page. Should rename to `NotesPage` and `NoteDetailPage` for code clarity.
+
+Hidden Issues:
+
+- Error messages passed to components are Error objects; rendering should use `.message` property consistently to avoid `[object Object]` display.
+- The `useInvalidateMutation` hook doesn't expose mutation state (isPending, isError) separately for per-item UI feedback.
+- Comment form validation could benefit from showing validation errors in-form rather than using alerts.
+
+Key Lesson Learned:
+
+- Project structure directly impacts maintainability and scalability. You've successfully moved from a monolithic approach to a pages-based architecture, which is the right pattern for SPA applications. Multiple query keys with selective cache invalidation is the correct pattern for complex data flows.

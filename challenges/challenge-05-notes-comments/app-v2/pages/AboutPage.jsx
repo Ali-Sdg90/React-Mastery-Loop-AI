@@ -3,7 +3,7 @@ import { useNote, useEditNote } from "../hooks/useNotes";
 import { useEffect, useState } from "react";
 import { useCreateComment, useGetComments } from "../hooks/useComments";
 
-const OldAboutPage = () => {
+const AboutPage = () => {
     const { id } = useParams();
 
     const navigate = useNavigate();
@@ -210,4 +210,4 @@ const OldAboutPage = () => {
     );
 };
 
-export default OldAboutPage;
+export default AboutPage;
