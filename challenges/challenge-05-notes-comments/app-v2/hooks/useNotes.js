@@ -11,6 +11,13 @@ export const useNotes = () => {
     });
 };
 
+export const useNote = (id) => {
+    return useQuery({
+        queryKey: [...NOTES_KEY, id],
+        queryFn: () => getReq(`/posts/${id}`),
+    });
+};
+
 export const useCreateNote = () => {
     return useInvalidateMutation((data) => {
         return postReq("/posts", data);
